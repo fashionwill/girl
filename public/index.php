@@ -9,7 +9,7 @@
 
 // [ 入口文件 ]
 echo "ddd";
-exit;//
+exit;////
 // 调试模式开关
 define("APP_DEBUG", true);
 
