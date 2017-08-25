@@ -8,7 +8,8 @@
 // +----------------------------------------------------------------------
 
 // [ 入口文件 ]
-
+echo "ddd";
+exit;
 // 调试模式开关
 define("APP_DEBUG", true);
 
@@ -37,5 +38,6 @@ define('THINKCMF_VERSION', '5.0.170607');
 // 加载框架基础文件
 require CMF_ROOT . 'simplewind/thinkphp/base.php';
 //
+
 // 执行应用
 \think\App::run()->send();
