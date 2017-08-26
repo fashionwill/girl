@@ -11,6 +11,7 @@
 namespace app\portal\controller;
 
 use cmf\controller\HomeBaseController;
+use think\Db;
 
 class IndexController extends HomeBaseController
 {
