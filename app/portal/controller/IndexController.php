@@ -19,7 +19,7 @@ class IndexController extends HomeBaseController
     {
     	/*获取数据库数据*/
     	//Db::name('portal_post')->where(['id' => $articleId])->setInc('post_hits');
-    	$result=Db::table('face')->select();
+    	$result=Db::name('face')->select();
     	print_r($result);
        // return $this->fetch(':index');
     }
