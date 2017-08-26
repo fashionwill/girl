@@ -18,7 +18,7 @@ class IndexController extends HomeBaseController
     public function index()
     {
     	/*获取数据库数据*/
-    	Db::name('portal_post')->where(['id' => $articleId])->setInc('post_hits');
+    	//Db::name('portal_post')->where(['id' => $articleId])->setInc('post_hits');
     	$result=Db::table('face')->select();
     	print_r($result);
        // return $this->fetch(':index');
