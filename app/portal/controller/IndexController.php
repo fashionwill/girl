@@ -32,11 +32,11 @@ class IndexController extends HomeBaseController
 		var_dump(count($data));
 		if(count($data))
 		{
-          return ['data'=>$data,'code'=>'success','message'=>'success',];
+          return ['data'=>$data,'code'=>'success','message'=>'success'];
 		}
 		else
 		{
-		  return ['data'=>$data,'code'=>'error','message'=>'no data',];
+		  return ['data'=>$data,'code'=>'error','message'=>'no data'];
 		}
 		
     }
