@@ -30,10 +30,10 @@ class IndexController extends HomeBaseController
     	echo $type=$this->request->param('type', 1, 'intval');
 
 		//$list = Db::name('face')->paginate(1,$page);
-		$list=Db::name('face')->page($page,10)->select();
+		$list=Db::name('face')->page($page,10)->select()->toArray();
 
 		// 把分页数据赋值给模板变量list
-		$this->assign('list', $list);
+		//$this->assign('list', $list);
 		print_r($list);
     }
 
