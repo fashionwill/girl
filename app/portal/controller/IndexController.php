@@ -26,15 +26,19 @@ class IndexController extends HomeBaseController
     public function loaddata()
     {
        // 查询状态为1的用户数据 并且每页显示10条数据
-    	echo $page=$this->request->param('p', 1, 'intval');
-    	echo $type=$this->request->param('type', 1, 'intval');
-
-		//$list = Db::name('face')->paginate(1,$page);
-		$list=Db::name('face')->page($page,10)->select()->toArray();
-
-		// 把分页数据赋值给模板变量list
-		//$this->assign('list', $list);
-		print_r($list);
+        $page=$this->request->param('p', 1, 'intval');
+        $type=$this->request->param('type', 1, 'intval');	
+		$data=Db::name('face')->page($page,10)->select()->toArray();
+		var_dump(count($data));
+		if(count($data))
+		{
+          return ['data'=>$data,'code'=>'success','message'=>'success',];
+		}
+		else
+		{
+		  return ['data'=>$data,'code'=>'error','message'=>'no data',];
+		}
+		
     }
 
 }
