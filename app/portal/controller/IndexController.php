@@ -29,7 +29,7 @@ class IndexController extends HomeBaseController
         $page=$this->request->param('p', 1, 'intval');
         $type=$this->request->param('type', 1, 'intval');	
 		$data=Db::name('face')->page($page,10)->select()->toArray();
-		var_dump(count($data));
+		//var_dump(count($data));
 		if(count($data))
 		{
           return json(['data'=>$data,'code'=>'success','message'=>'success']);
