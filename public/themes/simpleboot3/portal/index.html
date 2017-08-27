@@ -89,8 +89,8 @@
             
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
-                    <div class="aui-list-item-title">多张图片列表一</div>
-                    <p>借助栅格来实现图片列表</p>
+                    <!-- <div class="aui-list-item-title">多张图片列表一</div>
+                    <p>借助栅格来实现图片列表</p> -->
                     
                     <!-- item -->
                     <div class="aui-row aui-row-padded">
@@ -187,11 +187,14 @@ $(function(){
 		                    var arrLen = data.data.length;
 		                    if(arrLen > 0){
 		                        for(var i=0; i<arrLen; i++){
-		                            result +=   '<a class="item opacity" href="'+data[i].link+'">'
-		                                            +'<img src="'+data[i].pic+'" alt="">'
-		                                            +'<h3>'+data[i].title+'</h3>'
-		                                            +'<span class="date">'+data[i].date+'</span>'
-		                                        +'</a>';
+		                            // result +=   '<a class="item opacity" href="'+data[i].link+'">'
+		                            //                 +'<img src="'+data[i].pic+'" alt="">'
+		                            //                 +'<h3>'+data[i].title+'</h3>'
+		                            //                 +'<span class="date">'+data[i].date+'</span>'
+		                            //             +'</a>';
+                    result +='<div class="aui-col-xs-4">
+                    <img src="http://img1.91.com/uploads/allimg/150319/59-1503191P219.jpg"/>
+                    </div>';
 		                        }
 		                    // 如果没有数据
 		                    }else{
