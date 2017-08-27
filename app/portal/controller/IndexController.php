@@ -18,9 +18,9 @@ class IndexController extends HomeBaseController
     public function index()
     {
     	/*获取数据库数据*/
-    	$result=Db::name('face')->select();
-    	print_r($result);
-       // return $this->fetch(':index');
+    	// $result=Db::name('face')->select();
+    	// print_r($result);
+        return $this->fetch(':index');
     }
     /*ajax获取数据*/
     public function loaddata()
