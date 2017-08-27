@@ -89,11 +89,12 @@
             
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
-                    <!-- <div class="aui-list-item-title">多张图片列表一</div>
-                    <p>借助栅格来实现图片列表</p> -->
-
+                    <div class="aui-list-item-title">多张图片列表一</div>
+                    <p>借助栅格来实现图片列表</p>
+                    
+                    <!-- item -->
                     <div class="aui-row aui-row-padded">
-                        <!-- <div class="aui-col-xs-4">
+                       <!--  <div class="aui-col-xs-4">
                             <img src="http://img1.91.com/uploads/allimg/150319/59-1503191P219.jpg"/>
                         </div>
                         <div class="aui-col-xs-4">
@@ -101,55 +102,15 @@
                         </div>
                         <div class="aui-col-xs-4">
                             <img src="http://img1.91.com/uploads/allimg/150319/59-1503191P4030-L.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="http://img3.91.com/uploads/allimg/150319/59-1503191P2530-L.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="http://img2.91.com/uploads/allimg/150319/59-1503191P1350-L.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="http://img2.91.com/uploads/allimg/150319/59-1503191G4550-L.png" />
-                        </div>
-                                                <div class="aui-col-xs-4">
-                            <img src="http://img2.91.com/uploads/allimg/150304/59-1503041S9360-L.png"/>
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="http://img1.91.com/uploads/allimg/150303/59-150303151306-50.jpg" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo3.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo1.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo2.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo3.png" />
-                        </div>
-                                                <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo1.png"/>
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo2.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo3.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo1.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo2.png" />
-                        </div>
-                        <div class="aui-col-xs-4">
-                            <img src="__STATIC__/aui/image/demo3.png" />
                         </div> -->
-
-
+                        
                     </div>
+                    <!-- item -->
+                    <div class="aui-row aui-row-padded">
+                    </div>
+                    <!-- item -->
+
+
                 </div>
             </li>
         </ul>
@@ -165,7 +126,7 @@
 </script>
 
 <!-- jQuery1.7以上 或者 Zepto 二选一，不要同时都引用 -->
-<!-- <script src="js/zepto.min.js"></script> -->
+
 <script src="../dist/dropload.min.js"></script>
 <script>
 $(function(){
@@ -216,42 +177,36 @@ $(function(){
     var dropload = $('.content').dropload({
         scrollArea : window,
         loadDownFn : function(me){
-            // 加载菜单一的数据
-            if(itemIndex == '0'){
+                /*设置获取page*/
                 $.ajax({
                     type: 'GET',
-                    url: 'json/more.json',
+                    url: "{:cmf_url('portal/Index/loaddata',[],'')}",
                     dataType: 'json',
                     success: function(data){
-                        var result = '';
-                        counter++;
-                        pageEnd = num * counter;
-                        pageStart = pageEnd - num;
-
-                        if(pageStart <= data.lists.length){
-                            for(var i = pageStart; i < pageEnd; i++){
-                                result +=   '<a class="item opacity" href="'+data.lists[i].link+'">'
-                                                +'<img src="'+data.lists[i].pic+'" alt="">'
-                                                +'<h3>'+data.lists[i].title+'</h3>'
-                                                +'<span class="date">'+data.lists[i].date+'</span>'
-                                            +'</a>';
-                                if((i + 1) >= data.lists.length){
-                                    // 数据加载完
-                                    tab1LoadEnd = true;
-                                    // 锁定
-                                    me.lock();
-                                    // 无数据
-                                    me.noData();
-                                    break;
-                                }
-                            }
-                            // 为了测试，延迟1秒加载
-                            setTimeout(function(){
-                                $('.lists').eq(0).append(result);
-                                // 每次数据加载完，必须重置
-                                me.resetload();
-                            },1000);
-                        }
+                            var result = '';
+		                    var arrLen = data.data.length;
+		                    if(arrLen > 0){
+		                        for(var i=0; i<arrLen; i++){
+		                            result +=   '<a class="item opacity" href="'+data[i].link+'">'
+		                                            +'<img src="'+data[i].pic+'" alt="">'
+		                                            +'<h3>'+data[i].title+'</h3>'
+		                                            +'<span class="date">'+data[i].date+'</span>'
+		                                        +'</a>';
+		                        }
+		                    // 如果没有数据
+		                    }else{
+		                        // 锁定
+		                        me.lock();
+		                        // 无数据
+		                        me.noData();
+		                    }
+		                    // 为了测试，延迟1秒加载
+		                    setTimeout(function(){
+		                        // 插入数据到页面，放到最后面
+		                        $('.lists').eq(itemIndex).append(result);
+		                        // 每次数据插入，必须重置
+		                        me.resetload();
+		                    },1000);
                     },
                     error: function(xhr, type){
                         alert('Ajax error!');
@@ -259,37 +214,9 @@ $(function(){
                         me.resetload();
                     }
                 });
-            // 加载菜单二的数据
-            }else if(itemIndex == '1'){
-                // $.ajax({
-                //     type: 'GET',
-                //     url: 'json/update.json',
-                //     dataType: 'json',
-                //     success: function(data){
-                //         var result = '';
-                //         for(var i = 0; i < data.lists.length; i++){
-                //             result +=   '<a class="item opacity" href="'+data.lists[i].link+'">'
-                //                             +'<img src="'+data.lists[i].pic+'" alt="">'
-                //                             +'<h3>'+data.lists[i].title+'</h3>'
-                //                             +'<span class="date">'+data.lists[i].date+'</span>'
-                //                         +'</a>';
-                //         }
-                //         // 为了测试，延迟1秒加载
-                //         setTimeout(function(){
-                //             $('.lists').eq(1).append(result);
-                //             // 每次数据加载完，必须重置
-                //             me.resetload();
-                //         },1000);
-                //     },
-                //     error: function(xhr, type){
-                //         alert('Ajax error!');
-                //         // 即使加载出错，也得重置
-                //         me.resetload();
-                //     }
-                // });
-            }
-        }
-    }); 
+            
+            
+        }); 
 });
 </script>
 </html>
