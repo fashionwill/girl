@@ -29,7 +29,9 @@ class IndexController extends HomeBaseController
     	echo $page=$this->request->param('p', 1, 'intval');
     	echo $type=$this->request->param('type', 1, 'intval');
 
-		$list = Db::name('face')->paginate(1,$page);
+		//$list = Db::name('face')->paginate(1,$page);
+		$list=Db::table('face')->page($page,10)->select();
+
 		// 把分页数据赋值给模板变量list
 		$this->assign('list', $list);
 		print_r($list);
